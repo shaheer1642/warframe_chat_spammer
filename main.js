@@ -7,8 +7,8 @@ if (!fs.existsSync('./config.json')) fs.writeFileSync('./config.json',JSON.strin
     sendMsgHotkeyNoSpam: "ctrl+num0",
     startSpammerHotkey: "ctrl+num1",
     endSpammerHotkey: "ctrl+num2",
-    spamTimeoutMinInSeconds: 2,
-    spamTimeoutMaxInSeconds: 10,
+    spamTimeoutMinInSeconds: 121,
+    spamTimeoutMaxInSeconds: 300,
     pastas: [
         "allsquads.com | Find squads for any warframe content, like eidolons archon sortie murmur hydron nightwave steel path etc.. :squad:AllSquads Warframe:squad: Discord",
         "allsquads.com | Find squads for any warframe content, like relics archon sortie murmur hydron index arbitration voruna etc.. :squad:AllSquads Warframe:squad: Discord",
