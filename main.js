@@ -10,13 +10,13 @@ if (!fs.existsSync('./config.json')) fs.writeFileSync('./config.json',JSON.strin
     spamTimeoutMinInSeconds: 121,
     spamTimeoutMaxInSeconds: 300,
     pastas: [
-        "allsquads.com | Find squads for any warframe content, like eidolons archon sortie murmur hydron nightwave steel path etc.. :squad:AllSquads Warframe:squad: Discord",
-        "allsquads.com | Find squads for any warframe content, like relics archon sortie murmur hydron index arbitration voruna etc.. :squad:AllSquads Warframe:squad: Discord",
-        ":squad:AllSquads Warframe:squad: Discord (not a clan) | Find squads for any warframe content | Fun community | Giveaways | visit: allsquads.com",
-        "allsquads.com | Find squads for any warframe content, like eidolons archon sortie murmur hydron nightwave steel path etc.. :squad:AllSquads Warframe:squad: Discord",
-        "allsquads.com | Find squads for any warframe content, like relics archon sortie murmur hydron index arbitration voruna etc.. :squad:AllSquads Warframe:squad: Discord",
-        ":squad:AllSquads Warframe:squad: Discord (not a clan) | Find squads for any warframe content | Fun community | Giveaways | visit: allsquads.com",
-        "allsquads.com | Find squads for any warframe content, like relics archon sortie murmur hydron index arbitration voruna etc.. :squad:AllSquads Warframe:squad: Discord"
+        "discord.gg/346ZthxCe8 | Find squads for any warframe content, like eidolons archon sortie murmur hydron nightwave steel path etc.. :squad:AllSquads Warframe:squad: Discord",
+        "discord.gg/346ZthxCe8 | Find squads for any warframe content, like relics archon sortie murmur hydron index arbitration voruna etc.. :squad:AllSquads Warframe:squad: Discord",
+        ":squad:AllSquads Warframe:squad: Discord (not a clan) | Find squads for any warframe content | Fun community | Giveaways | discord link: discord.gg/346ZthxCe8",
+        "discord.gg/346ZthxCe8 | Find squads for any warframe content, like eidolons archon sortie murmur hydron nightwave steel path etc.. :squad:AllSquads Warframe:squad: Discord",
+        "discord.gg/346ZthxCe8 | Find squads for any warframe content, like relics archon sortie murmur hydron index arbitration voruna etc.. :squad:AllSquads Warframe:squad: Discord",
+        ":squad:AllSquads Warframe:squad: Discord (not a clan) | Find squads for any warframe content | Fun community | Giveaways | discord link: discord.gg/346ZthxCe8",
+        "discord.gg/346ZthxCe8 | Find squads for any warframe content, like relics archon sortie murmur hydron index arbitration voruna etc.. :squad:AllSquads Warframe:squad: Discord"
     ]
 }))
 
