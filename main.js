@@ -1,5 +1,5 @@
 console.log('script started')
-const {keyboard, Key, getActiveWindow } = require("@nut-tree/nut-js")
+const {keyboard, Key, getActiveWindow, sleep } = require("@nut-tree/nut-js")
 keyboard.config.autoDelayMs = 10
 const fs = require('fs')
 
@@ -95,19 +95,19 @@ async function sendCustomPasta() {
     if (title.toLowerCase().match('warframe')) {
         const msg = get_random(require('./config.json').pastas)
         clipboard.writeText(msg)
-        //Electron.clipboard.writeText()
-            await keyboard.pressKey(Key.LeftControl)
-            await keyboard.pressKey(Key.V)
-            await keyboard.releaseKey(Key.V)
-            await keyboard.releaseKey(Key.LeftControl)
-            await keyboard.pressKey(Key.Enter)
-            await keyboard.releaseKey(Key.Enter)
-            setTimeout(async () => {
-                await keyboard.pressKey(Key.T)
-                await keyboard.releaseKey(Key.T)
-                await keyboard.pressKey(Key.Backspace)
-                await keyboard.releaseKey(Key.Backspace)
-            }, 100);
+        sleep(500)
+        await keyboard.pressKey(Key.LeftControl)
+        await keyboard.pressKey(Key.V)
+        await keyboard.releaseKey(Key.V)
+        await keyboard.releaseKey(Key.LeftControl)
+        await keyboard.pressKey(Key.Enter)
+        await keyboard.releaseKey(Key.Enter)
+        setTimeout(async () => {
+            await keyboard.pressKey(Key.T)
+            await keyboard.releaseKey(Key.T)
+            await keyboard.pressKey(Key.Backspace)
+            await keyboard.releaseKey(Key.Backspace)
+        }, 100);
         console.log('Sent msg:',msg)
     } else {
         console.log('failed to send msg, warframe is not active')
