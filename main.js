@@ -2,6 +2,8 @@ console.log('script started')
 const {keyboard, Key, getActiveWindow, sleep } = require("@nut-tree/nut-js")
 keyboard.config.autoDelayMs = 10
 const fs = require('fs')
+require('dotenv').config()
+require('./modules/logreader')
 
 if (!fs.existsSync('./config.json')) fs.writeFileSync('./config.json',JSON.stringify({
     sendMsgHotkeyNoSpam: "ctrl+num0",
