@@ -17,21 +17,21 @@ if (!fs.existsSync(dataJsonPath)) fs.writeFileSync(dataJsonPath,JSON.stringify({
 var last_parse_time = JSON.parse(fs.readFileSync(dataJsonPath,'utf-8')).last_parse_time
 
 var last_read_line_index = -1
-var game_start_time = 0
+var game_start_time = null
 function read_log() {
     fs.readFile(eeLogPath, 'utf8', (err, data) => {
         if (err) return
         const lines = data.split('\n')
         for (const [index,line] of lines.entries()) {
+            if (!game_start_time && line.match('Current time: ')) {
+                const words = line.split(' ')
+                game_start_time = new Date(`${words[5]} ${words[6]} ${words[7]} ${words[8]} ${words[9]}`).getTime()
+            }
             if (index <= last_read_line_index) continue
             if (!Number(line.split(' ')[0])) continue
             const parse_time = game_start_time + Number(line.split(' ')[0].replace('.',''))
             if (parse_time < last_parse_time) continue
             //console.log('read line no',index,Number(line.split(' ')[0]),new Date(parse_time))
-            if (line.match('Current time: ')) {
-                const words = line.split(' ')
-                game_start_time = new Date(`${words[5]} ${words[6]} ${words[7]} ${words[8]} ${words[9]}`).getTime()
-            }
             if (line.match('IRC out: PRIVMSG')) {
                 webhook_client.send({
                     embeds: [{
