@@ -37,7 +37,7 @@ function read_log() {
                     embeds: [{
                         title: 'Sent new message',
                         description: `**Channel ${line.split(' ')[6]}**\n${line.split(`${line.split(' ')[6]} :`)[1].replace(/_/g,'\_')}`,
-                        color: 'GREEN'
+                        color: '#43d96b'
                     }]
                 }).catch(console.error)
             }
@@ -48,7 +48,7 @@ function read_log() {
                         embeds: [{
                             title: 'Received new private message',
                             description: `**Sender: ${sender}**`,
-                            color: 'RED'
+                            color: '#d95743'
                         }]
                     }).catch(console.error)
                 }
