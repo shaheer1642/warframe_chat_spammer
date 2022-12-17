@@ -2,10 +2,10 @@
     "sendMsgHotkeyNoSpam": "ctrl+num0",
     "startSpammerHotkey": "ctrl+num1",
     "endSpammerHotkey": "ctrl+num2",
-    "spamTimeoutMinInSeconds": 240,
-    "spamTimeoutMaxInSeconds": 360,
+    "spamTimeoutMinInSeconds": 121,
+    "spamTimeoutMaxInSeconds": 180,
     "pastas": [
-        "Check out LFG squad finder discord to host/join any WF content, relics eidolons archon sortie murmur hydron nightwave steel path etc. allsquads.com discord invite",
-        ":squad:Squad finder discord:squad: LFG server for all WF content | Super easy recruitment system | Giveaways, fun community | allsquads.com discord invite page"
+        "allsquads.com | Check out LFG Warframe squad finder discord to host/join any WF content, relics eidolons archon sortie murmur hydron nightwave steel path etc.",
+        "allsquads.com | :squad:Warframe Squad finder discord:squad: LFG server for all WF content | Super easy recruitment system | Giveaways, fun community"
     ]
 }
