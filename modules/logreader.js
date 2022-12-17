@@ -39,7 +39,7 @@ function read_log() {
                     embeds: [{
                         title: 'Sent new message',
                         description: `**Channel ${line.split(' ')[6]}**\n${line.split(`${line.split(' ')[6]} :`)[1].replace(/_/g,'\_')}`,
-                        color: '#43d96b'
+                        color: 4446571
                     }]
                 }).catch(console.error)
             }
@@ -50,7 +50,7 @@ function read_log() {
                         embeds: [{
                             title: 'Received new private message',
                             description: `**Sender: ${sender}**`,
-                            color: '#1e25e8'
+                            color: 1975784
                         }]
                     }).catch(console.error)
                 }
@@ -61,7 +61,7 @@ function read_log() {
                         embeds: [{
                             title: 'Error',
                             description: line,
-                            color: '#d95743'
+                            color: 14243651
                         }]
                     }).catch(console.error)
                     error_timeout = true
