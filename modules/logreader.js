@@ -27,7 +27,7 @@ function read_log() {
             if (!Number(line.split(' ')[0])) continue
             const parse_time = game_start_time + Number(line.split(' ')[0].replace('.',''))
             if (parse_time < last_parse_time) continue
-            console.log('read line no',index,Number(line.split(' ')[0]),new Date(parse_time))
+            //console.log('read line no',index,Number(line.split(' ')[0]),new Date(parse_time))
             if (line.match('Current time: ')) {
                 const words = line.split(' ')
                 game_start_time = new Date(`${words[5]} ${words[6]} ${words[7]} ${words[8]} ${words[9]}`).getTime()
