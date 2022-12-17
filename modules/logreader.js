@@ -13,6 +13,8 @@ setInterval(() => {
 
 setInterval(update_data_json, 10000);
 
+var error_timeout = false
+
 if (!fs.existsSync(dataJsonPath)) fs.writeFileSync(dataJsonPath,JSON.stringify({last_parse_time : -1}))
 var last_parse_time = JSON.parse(fs.readFileSync(dataJsonPath,'utf-8')).last_parse_time
 
@@ -48,9 +50,24 @@ function read_log() {
                         embeds: [{
                             title: 'Received new private message',
                             description: `**Sender: ${sender}**`,
+                            color: '#1e25e8'
+                        }]
+                    }).catch(console.error)
+                }
+            }
+            if (line.match('Failed to connect to content.warframe.com')) {
+                if (!error_timeout) {
+                    webhook_client.send({
+                        embeds: [{
+                            title: 'Error',
+                            description: line,
                             color: '#d95743'
                         }]
                     }).catch(console.error)
+                    error_timeout = true
+                    setTimeout(() => {
+                        error_timeout = false
+                    }, 120000);
                 }
             }
             last_read_line_index = index
