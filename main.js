@@ -10,15 +10,11 @@ if (!fs.existsSync('./config.json')) fs.writeFileSync('./config.json',JSON.strin
     startSpammerHotkey: "ctrl+num1",
     endSpammerHotkey: "ctrl+num2",
     spamTimeoutMinInSeconds: 121,
-    spamTimeoutMaxInSeconds: 300,
+    spamTimeoutMaxInSeconds: 240,
     pastas: [
-        "discord.gg/346ZthxCe8 | Find squads for any warframe content, like eidolons archon sortie murmur hydron nightwave steel path etc.. :squad:AllSquads Warframe:squad: Discord",
-        "discord.gg/346ZthxCe8 | Find squads for any warframe content, like relics archon sortie murmur hydron index arbitration voruna etc.. :squad:AllSquads Warframe:squad: Discord",
-        ":squad:AllSquads Warframe:squad: Discord (not a clan) | Find squads for any warframe content | Fun community | Giveaways | discord link: discord.gg/346ZthxCe8",
-        "discord.gg/346ZthxCe8 | Find squads for any warframe content, like eidolons archon sortie murmur hydron nightwave steel path etc.. :squad:AllSquads Warframe:squad: Discord",
-        "discord.gg/346ZthxCe8 | Find squads for any warframe content, like relics archon sortie murmur hydron index arbitration voruna etc.. :squad:AllSquads Warframe:squad: Discord",
-        ":squad:AllSquads Warframe:squad: Discord (not a clan) | Find squads for any warframe content | Fun community | Giveaways | discord link: discord.gg/346ZthxCe8",
-        "discord.gg/346ZthxCe8 | Find squads for any warframe content, like relics archon sortie murmur hydron index arbitration voruna etc.. :squad:AllSquads Warframe:squad: Discord"
+        "Aya farm, vaulted relics, eidolons, archon hunt, liches, murmur, sisters, steel path, incursions, index, arbitration, sorties - find squads on: discord.gg/wfs",
+        "Aya farm, vaulted relics, eidolons, archon hunt, liches, murmur, sisters, steel path, incursions, index, arbitration, sorties - find squads on: discord.gg/wfs",
+        "Do you have vaulted relics? Loki volt saryn nekros mag relics etc. etc.? Join our community to open them together: discord.gg/wfs",
     ]
 }))
 

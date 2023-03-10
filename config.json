@@ -1,11 +1,1 @@
-{
-    "sendMsgHotkeyNoSpam": "ctrl+num0",
-    "startSpammerHotkey": "ctrl+num1",
-    "endSpammerHotkey": "ctrl+num2",
-    "spamTimeoutMinInSeconds": 121,
-    "spamTimeoutMaxInSeconds": 180,
-    "pastas": [
-        "allsquads.com | Check out LFG Warframe squad finder discord to host/join any WF content, relics eidolons archon sortie murmur hydron nightwave steel path etc.",
-        "allsquads.com | :squad:Warframe Squad finder discord:squad: LFG server for all WF content | Super easy recruitment system | Giveaways, fun community"
-    ]
-}
+{"sendMsgHotkeyNoSpam":"ctrl+num0","startSpammerHotkey":"ctrl+num1","endSpammerHotkey":"ctrl+num2","spamTimeoutMinInSeconds":121,"spamTimeoutMaxInSeconds":240,"pastas":["Aya farm, vaulted relics, eidolons, archon hunt, liches, murmur, sisters, steel path, incursions, index, arbitration, sorties - find squads on: discord.gg/wfs","Aya farm, vaulted relics, eidolons, archon hunt, liches, murmur, sisters, steel path, incursions, index, arbitration, sorties - find squads on: discord.gg/wfs","Do you have vaulted relics? Loki volt saryn nekros mag relics etc. etc.? Join our community to open them together: discord.gg/wfs"]}
