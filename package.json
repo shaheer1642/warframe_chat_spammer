@@ -19,7 +19,7 @@
     "make": "electron-forge make"
   },
   "name": "warframe_chat_spammer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "warframe_chat_spammer",
   "main": "main.js",
   "author": "MrSofty",

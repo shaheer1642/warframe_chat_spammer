@@ -2,14 +2,19 @@
 const fs = require('fs')
 const os = require('os')
 const eeLogPath = os.homedir() + '/AppData/Local/Warframe/EE.log'
-const dataJsonPath = './data.json'
 const { WebhookClient } = require('discord.js');
 const webhook_client = new WebhookClient({url: process.env.WEBHOOK_URL})
 
-// read-file every 5s
+const appFolder = os.homedir() + '/Documents/warframe_chat_spammer'
+const dataJsonPath = os.homedir() + '/Documents/warframe_chat_spammer/data.json'
+try {
+    fs.mkdirSync(appFolder);
+} catch (e) {}
+
+// read-file every 10s
 setInterval(() => {
     read_log()
-}, 5000);
+}, 10000);
 
 setInterval(update_data_json, 10000);
 

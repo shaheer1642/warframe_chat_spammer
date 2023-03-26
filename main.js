@@ -1,23 +1,52 @@
 console.log('script started')
-const {keyboard, Key, getActiveWindow, sleep } = require("@nut-tree/nut-js")
+const {keyboard, Key, getActiveWindow, sleep, mouse, screen, Button } = require("@nut-tree/nut-js")
 keyboard.config.autoDelayMs = 10
 const fs = require('fs')
+const os = require('os')
 require('dotenv').config()
 require('./modules/logreader')
 
-if (!fs.existsSync('./config.json')) fs.writeFileSync('./config.json',JSON.stringify({
+const appFolder = os.homedir() + '/Documents/warframe_chat_spammer'
+const configPath = os.homedir() + '/Documents/warframe_chat_spammer/config.json'
+var config = {}
+try {
+  fs.mkdirSync(appFolder);
+} catch (e) {}
+
+const screenSize = {
+  width: 1280,
+  height: 720
+}
+getScreenSize()
+async function getScreenSize() {
+  screenSize.width = await screen.width()
+  screenSize.height = await screen.height()
+  console.log(screenSize)
+}
+
+
+if (!fs.existsSync(configPath)) {
+  fs.writeFileSync(configPath,JSON.stringify({
     sendMsgHotkeyNoSpam: "ctrl+num0",
     startSpammerHotkey: "ctrl+num1",
     endSpammerHotkey: "ctrl+num2",
     spamTimeoutMinInSeconds: 121,
     spamTimeoutMaxInSeconds: 240,
     pastas: [
-        "Aya farm, vaulted relics, eidolons, archon hunt, liches, murmur, sisters, steel path, incursions, index, arbitration, sorties - find squads on: discord.gg/wfs",
-        "Aya farm, vaulted relics, eidolons, archon hunt, liches, murmur, sisters, steel path, incursions, index, arbitration, sorties - find squads on: discord.gg/wfs",
-        "Do you have vaulted relics? Loki volt saryn nekros mag relics etc. etc.? Join our community to open them together: discord.gg/wfs",
-    ]
-}))
+        "Aya farm, vaulted relics, eidolons, archon hunt, liches, murmur, sisters, steel path, incursions, index, arbitration, sorties - find squads on: allsquads.com",
+        "Aya farm, vaulted relics, eidolons, archon hunt, liches, murmur, sisters, steel path, incursions, index, arbitration, sorties - find squads on: allsquads.com",
+        "Do you have vaulted relics? Loki volt saryn nekros mag relics etc. etc.? Join our community to open them together: allsquads.com",
+    ],
+    multiClientSpam: false
+  }))
+}
 
+config = JSON.parse(fs.readFileSync(configPath))
+
+fs.watchFile(configPath,() => {
+  console.log('config changed')
+  config = JSON.parse(fs.readFileSync(configPath))
+})
 // main.js
 
 // Modules to control application life and create native browser window
@@ -53,12 +82,12 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
   
-  globalShortcut.register(require('./config.json').sendMsgHotkeyNoSpam, sendCustomPasta)
-  globalShortcut.register(require('./config.json').startSpammerHotkey, () => {
+  globalShortcut.register(config.sendMsgHotkeyNoSpam, sendCustomPasta)
+  globalShortcut.register(config.startSpammerHotkey, () => {
       console.log('starting auto spammer')
       startSpammerHotkey()
   })
-  globalShortcut.register(require('./config.json').endSpammerHotkey, () => {
+  globalShortcut.register(config.endSpammerHotkey, () => {
       console.log('stopping auto spammer...')
       endSpammerHotkey()
   })
@@ -76,37 +105,57 @@ app.on('window-all-closed', () => {
 
 
 var startSpammerHotkeyTimer = null
+const screenSwitch = {
+  x: screenSize.width * .25,
+  y: screenSize.height * .5,
+}
+
+var screenToggle = true
+function toggleScreenSwitch() {
+  screenToggle = !screenToggle
+  screenSwitch.x = screenToggle ? screenSize.width * .25 : screenSize.width * .75
+  screenSwitch.y = screenSize.height * .5
+}
+
 function startSpammerHotkey() {
-    sendCustomPasta()
-    const seconds = randomIntFromInterval(require('./config.json').spamTimeoutMinInSeconds, require('./config.json').spamTimeoutMaxInSeconds)
-    startSpammerHotkeyTimer = setTimeout(startSpammerHotkey, seconds * 1000);
-    console.log('[autoSpammer] sending next msg after',seconds,'seconds')
+    sendCustomPasta(async () => {
+      if (config.multiClientSpam) {
+        toggleScreenSwitch()
+        await mouse.setPosition(screenSwitch).catch(console.error)
+        await mouse.click(Button.LEFT).catch(console.error)
+        await sleep(500)
+        sendCustomPasta()
+      }
+      const seconds = randomIntFromInterval(config.spamTimeoutMinInSeconds, config.spamTimeoutMaxInSeconds)
+      startSpammerHotkeyTimer = setTimeout(startSpammerHotkey, seconds * 1000);
+      console.log('[autoSpammer] sending next msg after',seconds,'seconds')
+    })
 }
 function endSpammerHotkey() {
     clearTimeout(startSpammerHotkeyTimer)
     console.log('stopped auto spammer')
 }
 
-async function sendCustomPasta() {
+async function sendCustomPasta(callback) {
     const windowRef = await getActiveWindow()
     const title = await windowRef.title
-    if (title.toLowerCase().match('warframe')) {
-        const msg = get_random(require('./config.json').pastas)
+    if (title == 'Warframe') {
+        const msg = get_random(config.pastas)
         clipboard.writeText(msg)
-        sleep(500)
+        await sleep(500)
         await keyboard.pressKey(Key.LeftControl)
         await keyboard.pressKey(Key.V)
         await keyboard.releaseKey(Key.V)
         await keyboard.releaseKey(Key.LeftControl)
         await keyboard.pressKey(Key.Enter)
         await keyboard.releaseKey(Key.Enter)
-        setTimeout(async () => {
-            await keyboard.pressKey(Key.T)
-            await keyboard.releaseKey(Key.T)
-            await keyboard.pressKey(Key.Backspace)
-            await keyboard.releaseKey(Key.Backspace)
-        }, 100);
+        await sleep(100)
+        await keyboard.pressKey(Key.T)
+        await keyboard.releaseKey(Key.T)
+        await keyboard.pressKey(Key.Backspace)
+        await keyboard.releaseKey(Key.Backspace)
         console.log('Sent msg:',msg)
+        if (callback) callback()
     } else {
         console.log('failed to send msg, warframe is not active')
     }
